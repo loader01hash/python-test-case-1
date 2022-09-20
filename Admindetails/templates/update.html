@@ -1,0 +1,368 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+        .container {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 5px;
+            background-color: #b61fbc;
+            padding: 20px;
+        }
+
+        .col-25 {
+            float: left;
+            width: 25%;
+            margin-top: 6px;
+        }
+
+        .col-75 {
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        @media screen and (max-width: 600px) {
+            .col-25, .col-75, input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+            }
+        }
+    </style>
+
+
+    <script>
+        $(function () {
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function (start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="width:50%;" class="container">
+        <h2 style="margin-top:100px;color:greenyellow">Update Movie</h2>
+        <form action="{% url 'Admindetails:updaterecord_movie' movie.id%}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Movie Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="fname" name="moviename" value="{{ movie.moviename }}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="jname">Screen Number</label>
+                </div>
+                <div class="col-75">
+                    <select id="country" name="screen_no" value="{{ movie.screen_no }}">
+                        <option value="1" {% if movie.screen_no|stringformat:'s' == '1' %} selected {% endif %}>1</option>
+                        <option value="2" {% if movie.screen_no|stringformat:'s' == '2' %} selected {% endif %}>2</option>
+                        <option value="3" {% if movie.screen_no|stringformat:'s' == '3' %} selected {% endif %}>3</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div style="margin-top:20px;" class="col-25">
+                        Select Dates
+                    </div>
+                    <div class="col-75">
+                        <input type="text" name="daterange" value="{{dat.0}} - {{dat.1}}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="margin-top:20px;" class="col-25">
+                        Total Seats
+                    </div>
+                    <div class="col-75">
+                        <input type="number" name="total_seats" value="{{ movie.total_seats }}" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="lname">Movie time slot</label>
+                    </div>
+                    <div>
+                        Choose:
+                        <input type="checkbox" name="Morning" value="10:00am-12:00pm" id="morning" {% if show.0 %} checked{% endif %}>
+                        <label for="morning">10:00am-12:00pm</label>
+                        <input type="checkbox" name="Afternoon" value="2:00pm-4:00pm" id="afternoon" {% if show.1 %} checked{% endif %}>
+                        <label for="Afternoon">2:00pm-4:00pm</label>
+                        <input type="checkbox" name="Evening" value="4:00pm-6:00pm" id="evening" {% if show.2 %} checked{% endif %}>
+                        <label for="check-3">4:00pm-6:00pm</label>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="lname">Price</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="number" id="lname" name="Price" value="{{ movie.seat_price }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="country">Certification</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="lname" name="certification" value="{{ movie.certification }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="subject">Movie Description</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="subject" name="description" style="height:200px">{{ movie.description }}</textarea>
+                    </div>
+                </div>
+                <br>
+                <!--
+                    <input type="file" name="upload" accept="image/*">
+                    <br>
+                -->
+                <div class="row">
+                    <input type="submit" value="Update Movie">
+                </div>
+        </form>
+    </div>    
+</body>
+</html>
+
+
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+        .container {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 5px;
+            background-color: #b61fbc;
+            padding: 20px;
+        }
+
+        .col-25 {
+            float: left;
+            width: 25%;
+            margin-top: 6px;
+        }
+
+        .col-75 {
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        @media screen and (max-width: 600px) {
+            .col-25, .col-75, input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+            }
+        }
+    </style>
+
+
+    <script>
+        $(function () {
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function (start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="width:50%;" class="container">
+        <h2 style="margin-top:100px;color:greenyellow">Update Movie</h2>
+        <form action="{% url 'Admindetails:updaterecord_movie' movie.id%}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Movie Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="fname" name="moviename" value="{{ movie.moviename }}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="jname">Screen Number</label>
+                </div>
+                <div class="col-75">
+                    <select id="country" name="screen_no" value="{{ movie.screen_no }}">
+                        <option value="1" {% if movie.screen_no|stringformat:'s' == '1' %} selected {% endif %}>1</option>
+                        <option value="2" {% if movie.screen_no|stringformat:'s' == '2' %} selected {% endif %}>2</option>
+                        <option value="3" {% if movie.screen_no|stringformat:'s' == '3' %} selected {% endif %}>3</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div style="margin-top:20px;" class="col-25">
+                        Select Dates
+                    </div>
+                    <div class="col-75">
+                        <input type="text" name="daterange" value="{{dat.0}} - {{dat.1}}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="margin-top:20px;" class="col-25">
+                        Total Seats
+                    </div>
+                    <div class="col-75">
+                        <input type="number" name="total_seats" value="{{ movie.total_seats }}" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="lname">Movie time slot</label>
+                    </div>
+                    <div>
+                        Choose:
+                        <input type="checkbox" name="Morning" value="10:00am-12:00pm" id="morning" {% if show.0 %} checked{% endif %}>
+                        <label for="morning">10:00am-12:00pm</label>
+                        <input type="checkbox" name="Afternoon" value="2:00pm-4:00pm" id="afternoon" {% if show.1 %} checked{% endif %}>
+                        <label for="Afternoon">2:00pm-4:00pm</label>
+                        <input type="checkbox" name="Evening" value="4:00pm-6:00pm" id="evening" {% if show.2 %} checked{% endif %}>
+                        <label for="check-3">4:00pm-6:00pm</label>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="lname">Price</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="number" id="lname" name="Price" value="{{ movie.seat_price }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="country">Certification</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="lname" name="certification" value="{{ movie.certification }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="subject">Movie Description</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="subject" name="description" style="height:200px">{{ movie.description }}</textarea>
+                    </div>
+                </div>
+                <br>
+                <!--
+                    <input type="file" name="upload" accept="image/*">
+                    <br>
+                -->
+                <div class="row">
+                    <input type="submit" value="Update Movie">
+                </div>
+        </form>
+    </div>    
+</body>
+</html> -->

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Seating Arrangement</title>
+</head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'seating.css' %}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<body>
+  <style>    
+   
+   .unbooked,.booked{
+    transform:scale(1.5);
+    margin-left:17px;
+    margin-right:17px;
+    margin-top: 30px;    
+  }
+
+  .booked:checked:after {
+    width: 15px;
+    height: 15px;
+    background-color:rgb(255, 0, 0);
+    }
+
+  .booked:after {
+    line-height: 1.5em;
+    padding:-20px;
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-top: -4px;
+    margin-left: -4px;
+    border: 1px solid rgb(192,192,192);
+    border-radius: 0.25em;
+    background: rgb(224,224,224);
+}
+.unbooked:checked:after {
+    width: 15px;
+    height: 15px;
+    background-color:rgb(0, 255, 0);
+    }
+
+  .unbooked:after {
+    line-height: 1.5em;
+    padding:-20px;
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-top: -4px;
+    margin-left: -4px;
+    border: 1px solid rgb(192,192,192);
+    border-radius: 0.25em;
+    background: rgb(224,224,224);
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+  </style>
+  <div style="margin-left:40px;" class="row">
+    <div style="margin-right:5px;background-color:red;width:20px;height:20px;"></div><span style="margin-right:30px;font-weight:900">Booked</span>
+    <div style="margin-right:5px;background-color:rgb(177, 183, 174);width:20px;height:20px;"></div><span style="margin-right:30px;font-weight:900">Available</span>
+    <div style="margin-right:5px;background-color:rgb(0, 255, 68);width:20px;height:20px;"></div><span style="margin-right:30px;font-weight:900">Selected</span>
+  </div>
+  
+  <div class="container">
+    <div style="transform: rotateX(-55deg);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.7);width:500px;height:100px;background-color:white" class="screen">
+    </div>
+  </div> 
+  <div style="animation: zoom-in-zoom-out 1s ease infinite;font-weight:900;margin-top:-50px;">All eyes this way please!</div>
+  
+   <form style="padding-bottom:50px;" action="{% url 'Booking:bookseats' id username %}" method="POST">      
+      <div style="padding-top:20px;justify-content:space-evenly;margin-left:400px;padding-right:374px;" id="target">
+      
+      </div>
+      <button id="submit">Proceed to the payment page.</button>
+    </form>
+    <style>     
+
+      .container {      
+      perspective: 800px;    
+      }
+
+      #submit{
+        font-weight:900;
+        margin-left:520px;
+        cursor:pointer;
+        transform:scale(1.2);      
+        border:none;
+        padding:10px;
+        border-radius:10px;
+        background-color:red;
+        color:white;   
+      }
+
+      #submit:hover{        
+      transform:scale(1.4);
+      font-weight:900;
+      }
+
+    </style>
+    
+    
+    
+     <script>
+        var data = JSON.parse("{{data|escapejs}}");
+        
+        for (x in data){
+          if(data[x] == 1)
+          {
+            $('#target').append($('<input>', { class: 'booked', id: x, 'type' : 'checkbox', name:x, checked: data[x], disabled: true}))
+          }
+          else{
+              $('#target').append($('<input>', { class: 'unbooked', id: x, 'type' : 'checkbox', name:x, checked: data[x], disabled: false}))}
+
+        }
+     </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>    
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Seating Arrangement</title>
+</head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'seating.css' %}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<body>
+  <style>
+     
+   .unbooked,.booked{
+    transform:scale(1.5);
+    margin-left:17px;
+    margin-right:17px;
+    margin-top: 30px;    
+  }
+
+  .booked:checked:after {
+    width: 15px;
+    height: 15px;
+    background-color:rgb(255, 0, 0);
+    }
+
+  .booked:after {
+    line-height: 1.5em;
+    padding:-20px;
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-top: -4px;
+    margin-left: -4px;
+    border: 1px solid rgb(192,192,192);
+    border-radius: 0.25em;
+    background: rgb(224,224,224);
+}
+.unbooked:checked:after {
+    width: 15px;
+    height: 15px;
+    background-color:rgb(0, 255, 0);
+    }
+
+  .unbooked:after {
+    line-height: 1.5em;
+    padding:-20px;
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-top: -4px;
+    margin-left: -4px;
+    border: 1px solid rgb(192,192,192);
+    border-radius: 0.25em;
+    background: rgb(224,224,224);
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+  </style>
+  <div class="container">
+    <div style="transform: rotateX(-55deg);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.7);width:500px;height:100px;background-color:white" class="screen">
+    </div>
+  </div> 
+  <div style="animation: zoom-in-zoom-out 1s ease infinite;font-weight:900;margin-top:-50px;">All eyes this way please!</div>
+  
+   <form style="padding-bottom:50px;" action="{% url 'Booking:bookseats' id username %}" method="POST">      
+      <div style="padding-top:20px;justify-content:space-evenly;margin-left:400px;padding-right:374px;" id="target">
+      
+      </div>
+      <button id="submit">Proceed to the payment page.</button>
+    </form>
+    <style>     
+
+      .container {      
+      perspective: 800px;    
+      }
+
+      #submit{
+        font-weight:900;
+        margin-left:520px;
+        cursor:pointer;
+        transform:scale(1.2);      
+        border:none;
+        padding:10px;
+        border-radius:10px;
+        background-color:red;
+        color:white;   
+      }
+
+      #submit:hover{        
+      transform:scale(1.4);
+      font-weight:900;
+      }
+
+    </style>
+    
+    
+    
+     <script>
+        var data = JSON.parse("{{data|escapejs}}");
+        
+        for (x in data){
+          if(data[x] == 1)
+          {
+            $('#target').append($('<input>', { class: 'booked', id: x, 'type' : 'checkbox', name:x, checked: data[x], disabled: true}))
+          }
+          else{
+              $('#target').append($('<input>', { class: 'unbooked', id: x, 'type' : 'checkbox', name:x, checked: data[x], disabled: false}))}
+
+        }
+     </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>    
+</body>
+</html>
+
+ -->

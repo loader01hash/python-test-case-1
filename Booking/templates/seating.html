@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS CreateElement Demo</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<body> 
+       
+    <!-- <div style="width:500px;height:100px;background-color:red">
+        <script>
+            var toAdd = document.createDocumentFragment();
+            for(var i=0;i<20;i++){
+                let div = document.createElement('input');
+                div.id = 'r'+i;
+                div.name = i;            
+                div.type = 'checkbox';
+                document.body.appendChild(div);   
+            }            
+        </script>  
+    </div> -->
+    <form action="{% url 'Booking:bookseats' id username %}" method="POST">
+
+
+    <div style="margin-left:500px;margin-top:200px;" id="target">  </div>
+    <div class="row">
+      <input type="submit" value="Add Seat">
+  </div>
+    </form>
+     <script>
+        var data = JSON.parse("{{data|escapejs}}");
+        
+        for (x in data){
+          if(data[x] == 1)
+          {
+            $('#target').append($('<input>', { id: x, 'type' : 'checkbox', name:x, checked: data[x], disabled: true}))
+          }
+          else{
+              $('#target').append($('<input>', { id: x, 'type' : 'checkbox', name:x, checked: data[x], disabled: false}))}
+
+        }
+
+
+        // for(var i =1; i<= 10; i++){
+        //     $('#target').append($('<input>', { id: 'r' + i, 'type' : 'checkbox', name:i, checked: "true"}))
+        // }
+     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>    
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'seating.css' %}" />
+  <title>Movie Seat Booking</title>
+  
+</head>
+
+<body>
+   <ul class="showcase">
+    <li>
+      <div class="seat"></div>
+      <small>Available</small>
+    </li>
+    <li>
+      <div class="seat selected"></div>
+      <small>Selected</small>
+    </li>
+    <li>
+      <div class="seat occupied"></div>
+      <small>Occupied</small>
+    </li>
+  </ul>
+  <div style="padding:10px" class="container">
+    <span style="margin-left:90px;">All eyes this way please!</span>
+    <div class="screen"></div>
+    <div class="row">
+      <div class="col col-lg-1 place mx-auto unbooked seat">A1</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">A2</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">A3</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">A4</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">A5</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">A6</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">A7</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">A8</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">A9</div>
+    </div>
+    <div class="row">
+      <div class="col col-lg-1 place mx-auto unbooked seat">B1</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">B2</div>
+      <div class="col col-lg-1 place mx-auto taken occupied seat">B3</div>
+      <div class="col col-lg-1 place mx-auto taken occupied seat">B4</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">B5</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">B6</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">B7</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">B8</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">B9</div>
+    </div>
+    <div class="row">
+      <div class="col col-lg-1 place mx-auto unbooked seat">C1</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">C2</div>
+      <div class="col col-lg-1 place mx-auto taken occupied seat">C3</div>
+      <div class="col col-lg-1 place mx-auto taken occupied seat">C4</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">C5</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">C6</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">C7</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">C8</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">C9</div>
+    </div>
+    <div class="row">
+      <div class="col col-lg-1 place mx-auto unbooked seat">D1</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">D2</div>
+      <div class="col col-lg-1 place mx-auto taken occupied seat">D3</div>
+      <div class="col col-lg-1 place mx-auto taken occupied seat">D4</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">D5</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">D6</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">D7</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">D8</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">D9</div>
+    </div>
+    <div class="row">
+      <div class="col col-lg-1 place mx-auto unbooked seat">E1</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">E2</div>
+      <div class="col col-lg-1 place mx-auto taken occupied seat">E3</div>
+      <div class="col col-lg-1 place mx-auto taken occupied seat">E4</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">E5</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">E6</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">E7</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">E8</div>
+      <div class="col col-lg-1 place mx-auto unbooked seat">E9</div>
+    </div>
+
+  </div>
+
+  
+
+
+  <p style="transform:scale(1.3);font-weight:900" class="text">You have selected <span id="count">0</span> seats
+  </p>
+  <p style="transform:scale(1.3);font-weight:900" class="text">Total Cost is &#8377;<span id="price">0</span>
+  </p>
+  <div class="container order d-grid gap-2 mx-auto">
+    <input type="button" value="Confirm Booking" id="submit">
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="{% static 'seating.js' %}"></script>
+  
+</body>
+
+</html> -->

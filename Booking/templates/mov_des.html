@@ -1,0 +1,1129 @@
+ 
+ <!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" href="img/icon.png" type="image/png">
+   <title>The Golden Theatre</title>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'main.css' %}">
+  <link rel="stylesheet" href="{% static 'media_query.css' %}"> 
+ 
+   <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900" rel="stylesheet" />
+ </head>
+ <style>
+ 
+ 
+ /**
+  * copyright 2021 @codewithsadee 
+  */
+ 
+ 
+ 
+ 
+ 
+ /*-------------------------------------*\
+   #RESPONSIVE FOR 1200px
+ \*-------------------------------------*/
+ 
+ @media screen and (max-width: 1200px) {
+ 
+ :root {
+ 
+   /**
+    * Spacing 
+    */
+ 
+   --px: 80px; /* padding-left & padding-right */
+ 
+ }
+ 
+ /**
+  * HEADER RESPONSIVE
+  */
+ 
+ header {
+   position: fixed;
+   top:  0;
+   left: 0;
+   width: 100%;
+   overflow: hidden;
+   z-index: 50;
+ }
+ 
+ header.active { top: 250px; }
+ 
+ /**
+  * small screen menu button style 
+  */
+ 
+ .navbar-menu-btn {
+   display: block;
+   position: absolute;
+   top:  50%;
+   left: var(--px);
+   transform: translateY(-50%);
+ }
+ 
+ .navbar-brand { margin-left: 50px; }
+ 
+ .navbar-menu-btn span {
+   display: block;
+   background: var(--off-white);
+   width: 25px;
+   height: 2px;
+   margin: 8px;
+ }
+ 
+ .navbar-menu-btn .two   { width: 20px; }
+ .navbar-menu-btn .three { width: 15px; }
+ 
+ .navbar-menu-btn.active span { background: var(--light-azure); }
+ 
+ .navbar-menu-btn.active .one { transform: rotate(45deg) translateY(14px); }
+ 
+ .navbar-menu-btn.active .two { width: 0; }
+ 
+ .navbar-menu-btn.active .three {
+   width: 25px;
+   transform: rotate(-45deg) translateY(-14px); 
+ }
+ 
+ nav {
+   position: fixed;
+   top: -250px;
+   left: 0;
+   width: 100%;
+   z-index: 100;
+ }
+ 
+ nav.active { top: 0; }
+ 
+ .navbar-nav {
+   height: 250px;
+   flex-direction: column;
+   justify-content: center;
+   align-items:     flex-start;
+   padding-left: var(--px);
+   border-bottom: 1px solid var(--oxford-blue);
+ }
+ 
+ .navbar-nav li:not(:last-child) {
+   margin-right: 0;
+   margin-bottom: 30px;
+ }
+ 
+ .navbar-form {
+   position: absolute;
+   top:   100%;
+   left:  var(--px);
+   right: var(--px);
+   height: 100%;
+   background: var(--rich-black-fogra-29);
+   margin-right: 0;
+   display:         flex;
+   justify-content: space-between;
+   align-items:     center;
+   z-index: 100;
+ }
+ 
+ .navbar-form.active { top: 0; }
+ 
+ .navbar-form-search { margin-right: 40px; }
+ 
+ .navbar-form-btn { right: 80px; }
+ 
+ .navbar-form-close {
+   display: block;
+   padding-top: 4px;
+   opacity: 0.8;
+ }
+ 
+ .navbar-form-close:hover { opacity: 1; }
+ 
+ .navbar-form-close ion-icon {
+   font-size: 20px;
+   color: var(--light-azure);
+ }
+ 
+ .navbar-search-btn {
+   display: block;
+   margin-right: 100px;
+   padding-top: 5px;
+ }
+ 
+ 
+ /**
+  * BANNER SECTION RESPONSIVE
+  */
+ 
+ .banner { margin-top: 100px; }
+ 
+ .banner-card .card-title { font-size: 2.5em; }
+ 
+ 
+ 
+ /**
+  * CATEGORY SECTION RESPONSIVE
+  */
+ 
+ .category-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+ 
+ 
+ 
+ /**
+  * FOOTER SECTION RESPONSIVE
+  */
+ 
+ .footer-content { flex-direction: column; }
+ 
+ .footer-brand {
+   margin-right: 0;
+   margin-bottom: 60px;
+ }
+ 
+ .footer-links { grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); }
+ 
+ }
+ 
+ 
+ 
+ 
+ 
+ /*-------------------------------------*\
+ #RESPONSIVE FOR 1024px
+ \*-------------------------------------*/
+ 
+ @media screen and (max-width: 1024px) {
+ 
+ :root {
+ 
+   /**
+    * Spacing 
+    */
+ 
+   --px: 60px; /* padding-left & padding-right */
+ 
+ }
+ 
+ /**
+  * BANNER SECTION 
+  */
+ .banner-card .card-content {
+   bottom: 40px;
+   left: 60px;
+   right: 60px;
+ }
+ 
+ }
+ 
+ 
+ 
+ 
+ 
+ /*-------------------------------------*\
+ #RESPONSIVE FOR 768px
+ \*-------------------------------------*/
+ 
+ @media screen and (max-width: 768px) {
+ 
+ :root {
+ 
+   /**
+    * Spacing 
+    */
+ 
+   --px: 40px; /* padding-left & padding-right */
+ 
+ }
+ 
+ /**
+  * BANNER SECTION 
+  */
+ 
+ .banner { display: none; }
+ 
+ 
+ 
+ /**
+  * MOVIE SECTION
+  */
+ 
+ .movies { margin-top: 120px; }
+ 
+ /**
+  * filter bar responsive
+  */
+ .filter-bar {
+   flex-direction: column;
+   align-items: flex-start;
+ }
+ 
+ .filter-bar select { margin-bottom: 20px; }
+ 
+ .filter-radios { width: 100%; }
+ 
+ }
+ 
+ 
+ 
+ 
+ 
+ /*-------------------------------------*\
+ #RESPONSIVE FOR 575px
+ \*-------------------------------------*/
+ 
+ @media screen and (max-width: 575px) {
+ :root {
+ 
+   /**
+    * Spacing 
+    */
+ 
+   --px: 20px; /* padding-left & padding-right */
+ 
+   /**
+    * Typography 
+    */
+   --section-heading: 32px;
+   --fs-lg:           20px;
+ 
+ }
+ 
+ .navbar-search-btn { margin-right: 20px; }
+ 
+ .navbar-form-search { margin-right: 20px; }
+ 
+ .navbar-form-btn { right: 55px; }
+ 
+ 
+ /**
+  * FOOTER SECTION RISPONSIVE
+  */
+ 
+ .footer-copyright { flex-direction: column-reverse; }
+ 
+ .wrapper { margin-bottom: 20px; }
+ }
+ </style>
+ 
+ <body>
+ {% for p in Selected_movie%}
+   <div class="container">
+     <header class="">
+       <div class="navbar">
+         <button class="navbar-menu-btn">
+           <span class="one"></span>
+           <span class="two"></span>
+           <span class="three"></span>
+         </button>
+ 
+ 
+         <a href="#" class="navbar-brand">
+           <img style="margin-top:50px;width:200px;height:auto;" src="{% static 'logo.png' %}">
+         </a>
+         <nav style="transform:scale(1.2);margin-top:20px;" class="">
+           <ul class="navbar-nav">
+ 
+             <li> <a href="{% url 'Authentication:home' username%}" class="navbar-link">Home</a> </li>
+             <li> <a href="#category" class="navbar-link">Category</a> </li>
+             <li> <a href="#live" style="margin-top:1.5px;" class="navbar-link  indicator">LIVE</a> </li>
+ 
+           </ul>
+         </nav>
+         <div class="navbar-actions">
+ 
+           <form style="margin-top:20px" action="#" class="navbar-form">
+             <input type="text" name="search" placeholder="I'm looking for..." class="navbar-form-search">
+ 
+             <button class="navbar-form-btn">
+               <ion-icon name="search-outline"></ion-icon>
+             </button>
+ 
+             <button class="navbar-form-close">
+               <ion-icon name="close-circle-outline"></ion-icon>
+             </button>
+           </form>
+           <button class="navbar-search-btn">
+             <ion-icon name="search-outline"></ion-icon>
+           </button>
+ 
+           <a style="margin-top:20px" href="{% url 'Authentication:index' %}" class="navbar-signin">
+             <span>Sign out</span>
+             <ion-icon name="log-in-outline"></ion-icon>
+           </a>
+ 
+         </div>
+ 
+       </div>
+     </header>
+ 
+     <main>
+       <p style="font-weight:900;margin-left:700px;margin-top:50px;" class="selector2">Book Tickets Now !</p>  
+       <section class="banner">
+         <div class="banner-card">
+          
+           <img src="{{p.image.url }}" class="banner-img" alt="">
+ 
+           <div class="card-content">
+             <div class="card-info">       
+ 
+               <div class="quality">
+                 <i class="fa fa-certificate" aria-hidden="true"></i>
+                 <span>Certification: {{p.certification}}</span>
+               </div>
+ 
+               <div class="quality">4K</div>
+ 
+             </div>
+ 
+             <h2 class="card-title">{{p.moviename}}</h2>
+           </div>
+ 
+         </div>
+       </section>
+       <div style="margin: 0 auto;width:50%;margin-bottom:50px;" class="descrip">
+         <h3 style="color:aquamarine;margin-bottom:20px;">About Movie : </h3>
+         {{p.description}}
+       </div>
+       <section class="movies">
+         <div class="filter-bar">
+ 
+           <div class="filter-dropdowns">
+ 
+             <select name="genre" class="genre">
+               <option value="all genres">All genres</option>
+               <option value="action">Action</option>
+               <option value="adventure">Adventure</option>
+               <option value="animal">Animal</option>
+               <option value="animation">Animation</option>
+               <option value="biography">Biography</option>
+             </select>
+ 
+             <select name="year" class="year">
+               <option value="all years">All the years</option>
+               <option value="2022">2022</option>
+               <option value="2020-2021">2020-2021</option>
+               <option value="2010-2019">2010-2019</option>
+               <option value="2000-2009">2000-2009</option>
+               <option value="1980-1999">1980-1999</option>
+             </select>
+ 
+           </div>
+ 
+           <div class="filter-radios">
+ 
+             <input type="radio" name="grade" id="featured" checked>
+             <label for="featured">Featured</label>
+ 
+             <input type="radio" name="grade" id="popular">
+             <label for="popular">Popular</label>
+ 
+             <input type="radio" name="grade" id="newest">
+             <label for="newest">Newest</label>
+ 
+             <div class="checked-radio-bg"></div>
+ 
+           </div>
+ 
+         </div>  
+         <style>
+           body{
+             overflow-x: hidden;
+           }
+ 
+         .selector1 {  animation: sway1 10s infinite;
+         animation-timing-function: ease-in-out;}
+ 
+         .selector2 {  animation: sway2 10s infinite;
+         animation-timing-function: ease-in-out;}
+ 
+         @keyframes sway1  {
+           0% { transform: translate(1000px);
+             color:cyan;
+           }
+           50% { transform: translate(-70px);
+             color:goldenrod; }
+           100% { transform: translate(1000px);
+             color:cyan;}
+       }
+ 
+       @keyframes sway2  {
+           0% { transform: translate(-500px);color:cyan; }
+           50% { transform: translate(500px); color:goldenrod;}
+           100% { transform: translate(-500px);color:cyan; }
+       }
+         </style>
+         <p style="font-weight:900;margin-top:30px;padding-top:40px;margin-bottom:20px;" class="selector1">Book Tickets Now !</p>    
+         <!-- <a href="{% url 'Booking:showlist' p.id username%}" style="background-color:red" class="load-more">hi</a> -->
+         <a href="{% url 'Booking:showlist' p.id username %}"><button style="background-color:red" class="load-more">Book Tickets</button></a>
+       </section>
+      
+     </main>
+ 
+ 
+ 
+ 
+ 
+     
+     <footer>
+ 
+       <div class="footer-content">
+ 
+         <div class="footer-brand">
+           <img src="{% static 'logo.png' %}" alt="" class="footer-logo">
+           <p class="slogan">Movies & TV Shows, Online cinema,
+            Watch Online Movies Easily!</p>
+ 
+ 
+           <div class="social-link">
+ 
+             <a href="#">
+               <ion-icon name="logo-facebook"></ion-icon>
+             </a>
+             <a href="#">
+               <ion-icon name="logo-twitter"></ion-icon>
+             </a>
+             <a href="#">
+               <ion-icon name="logo-instagram"></ion-icon>
+             </a>
+             <a href="#">
+               <ion-icon name="logo-tiktok"></ion-icon>
+             </a>
+             <a href="#">
+               <ion-icon name="logo-youtube"></ion-icon>
+             </a>
+ 
+           </div>
+         </div>
+ 
+ 
+         <div class="footer-links">
+           <ul>
+ 
+             <h4 class="link-heading">The Golden Theatre</h4>
+ 
+             <li class="link-item"><a href="#">About us</a></li>
+             <li class="link-item"><a href="#">My profile</a></li>
+             <li class="link-item"><a href="#">Pricing plans</a></li>
+             <li class="link-item"><a href="#">Contacts</a></li>
+ 
+           </ul>
+ 
+           <ul>
+ 
+             <h4 class="link-heading">Browse</h4>
+ 
+             <li class="link-item"><a href="#">Live Tv</a></li>
+             <li class="link-item"><a href="#">Live News</a></li>
+             <li class="link-item"><a href="#">Live Sports</a></li>
+             <li class="link-item"><a href="#">Streaming Library</a></li>
+ 
+           </ul>
+ 
+           <ul>
+             <h4 class="link-heading">More</h4>
+             <li class="link-item"><a href="#">TV Shows</a></li>
+             <li class="link-item"><a href="#">Movies</a></li>
+             <li class="link-item"><a href="#">Kids</a></li>
+             <li class="link-item"><a href="#">Collections</a></li>
+ 
+           </ul>
+ 
+           <ul>
+ 
+             <h4 class="link-heading">Help</h4>
+ 
+             <li class="link-item"><a href="#">Account & Billing</a></li>
+             <li class="link-item"><a href="#">Plans & Pricing</a></li>
+             <li class="link-item"><a href="#">Supported devices</a></li>
+             <li class="link-item"><a href="#">Accessibility</a></li>
+ 
+           </ul>
+         </div>
+ 
+       </div>
+ 
+       <div class="footer-copyright">
+ 
+         <div class="copyright">
+           <p>&copy; copyright 2022 <span style="color:goldenrod">TheGoldenTheatre</span>
+         </div>
+ 
+         <div class="wrapper">
+           <a href="#">Privacy policy</a>
+           <a href="#">Terms and conditions</a>
+         </div>
+ 
+       </div>
+ 
+     </footer>
+ 
+   </div>
+ 
+   <script src="{% static 'static/main.js' %}"></script>
+ 
+   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+ {%endfor%}
+ </body>
+ 
+ </html>
+ 
+ 
+
+
+
+<!--  
+
+  
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/icon.png" type="image/png">
+  <title>The Golden Theatre</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+ <link rel="stylesheet" href="{% static 'media_query.css' %}"> 
+
+  <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900" rel="stylesheet" />
+</head>
+<style>
+    /*-------------------------------------*\
+  #media_query.css
+\*-------------------------------------*/
+
+/**
+ * copyright 2021 @codewithsadee 
+ */
+
+
+
+
+
+/*-------------------------------------*\
+  #RESPONSIVE FOR 1200px
+\*-------------------------------------*/
+
+@media screen and (max-width: 1200px) {
+
+:root {
+
+  /**
+   * Spacing 
+   */
+
+  --px: 80px; /* padding-left & padding-right */
+
+}
+
+/**
+ * HEADER RESPONSIVE
+ */
+
+header {
+  position: fixed;
+  top:  0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 50;
+}
+
+header.active { top: 250px; }
+
+/**
+ * small screen menu button style 
+ */
+
+.navbar-menu-btn {
+  display: block;
+  position: absolute;
+  top:  50%;
+  left: var(--px);
+  transform: translateY(-50%);
+}
+
+.navbar-brand { margin-left: 50px; }
+
+.navbar-menu-btn span {
+  display: block;
+  background: var(--off-white);
+  width: 25px;
+  height: 2px;
+  margin: 8px;
+}
+
+.navbar-menu-btn .two   { width: 20px; }
+.navbar-menu-btn .three { width: 15px; }
+
+.navbar-menu-btn.active span { background: var(--light-azure); }
+
+.navbar-menu-btn.active .one { transform: rotate(45deg) translateY(14px); }
+
+.navbar-menu-btn.active .two { width: 0; }
+
+.navbar-menu-btn.active .three {
+  width: 25px;
+  transform: rotate(-45deg) translateY(-14px); 
+}
+
+nav {
+  position: fixed;
+  top: -250px;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+nav.active { top: 0; }
+
+.navbar-nav {
+  height: 250px;
+  flex-direction: column;
+  justify-content: center;
+  align-items:     flex-start;
+  padding-left: var(--px);
+  border-bottom: 1px solid var(--oxford-blue);
+}
+
+.navbar-nav li:not(:last-child) {
+  margin-right: 0;
+  margin-bottom: 30px;
+}
+
+.navbar-form {
+  position: absolute;
+  top:   100%;
+  left:  var(--px);
+  right: var(--px);
+  height: 100%;
+  background: var(--rich-black-fogra-29);
+  margin-right: 0;
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  z-index: 100;
+}
+
+.navbar-form.active { top: 0; }
+
+.navbar-form-search { margin-right: 40px; }
+
+.navbar-form-btn { right: 80px; }
+
+.navbar-form-close {
+  display: block;
+  padding-top: 4px;
+  opacity: 0.8;
+}
+
+.navbar-form-close:hover { opacity: 1; }
+
+.navbar-form-close ion-icon {
+  font-size: 20px;
+  color: var(--light-azure);
+}
+
+.navbar-search-btn {
+  display: block;
+  margin-right: 100px;
+  padding-top: 5px;
+}
+
+
+/**
+ * BANNER SECTION RESPONSIVE
+ */
+
+.banner { margin-top: 100px; }
+
+.banner-card .card-title { font-size: 2.5em; }
+
+
+
+/**
+ * CATEGORY SECTION RESPONSIVE
+ */
+
+.category-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+
+
+/**
+ * FOOTER SECTION RESPONSIVE
+ */
+
+.footer-content { flex-direction: column; }
+
+.footer-brand {
+  margin-right: 0;
+  margin-bottom: 60px;
+}
+
+.footer-links { grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); }
+
+}
+
+
+
+
+
+/*-------------------------------------*\
+#RESPONSIVE FOR 1024px
+\*-------------------------------------*/
+
+@media screen and (max-width: 1024px) {
+
+:root {
+
+  /**
+   * Spacing 
+   */
+
+  --px: 60px; /* padding-left & padding-right */
+
+}
+
+/**
+ * BANNER SECTION 
+ */
+.banner-card .card-content {
+  bottom: 40px;
+  left: 60px;
+  right: 60px;
+}
+
+}
+
+
+
+
+
+/*-------------------------------------*\
+#RESPONSIVE FOR 768px
+\*-------------------------------------*/
+
+@media screen and (max-width: 768px) {
+
+:root {
+
+  /**
+   * Spacing 
+   */
+
+  --px: 40px; /* padding-left & padding-right */
+
+}
+
+/**
+ * BANNER SECTION 
+ */
+
+.banner { display: none; }
+
+
+
+/**
+ * MOVIE SECTION
+ */
+
+.movies { margin-top: 120px; }
+
+/**
+ * filter bar responsive
+ */
+.filter-bar {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.filter-bar select { margin-bottom: 20px; }
+
+.filter-radios { width: 100%; }
+
+}
+
+
+
+
+
+/*-------------------------------------*\
+#RESPONSIVE FOR 575px
+\*-------------------------------------*/
+
+@media screen and (max-width: 575px) {
+:root {
+
+  /**
+   * Spacing 
+   */
+
+  --px: 20px; /* padding-left & padding-right */
+
+  /**
+   * Typography 
+   */
+  --section-heading: 32px;
+  --fs-lg:           20px;
+
+}
+
+.navbar-search-btn { margin-right: 20px; }
+
+.navbar-form-search { margin-right: 20px; }
+
+.navbar-form-btn { right: 55px; }
+
+
+/**
+ * FOOTER SECTION RISPONSIVE
+ */
+
+.footer-copyright { flex-direction: column-reverse; }
+
+.wrapper { margin-bottom: 20px; }
+}
+</style>
+
+<body>
+{% for p in Selected_movie%}
+  <div class="container">
+    <header class="">
+      <div class="navbar">
+        <button class="navbar-menu-btn">
+          <span class="one"></span>
+          <span class="two"></span>
+          <span class="three"></span>
+        </button>
+
+
+        <a href="#" class="navbar-brand">
+          <img style="margin-top:50px;width:200px;height:auto;" src="{% static 'logo.png' %}">
+        </a>
+        <nav style="transform:scale(1.2);margin-top:20px;" class="">
+          <ul class="navbar-nav">
+
+            <li> <a href="{% url 'Authentication:home' username%}" class="navbar-link">Home</a> </li>
+            <li> <a href="#category" class="navbar-link">Category</a> </li>
+            <li> <a href="#live" style="margin-top:1.5px;" class="navbar-link  indicator">LIVE</a> </li>
+
+          </ul>
+        </nav>
+        <div class="navbar-actions">
+
+          <form style="margin-top:20px" action="#" class="navbar-form">
+            <input type="text" name="search" placeholder="I'm looking for..." class="navbar-form-search">
+
+            <button class="navbar-form-btn">
+              <ion-icon name="search-outline"></ion-icon>
+            </button>
+
+            <button class="navbar-form-close">
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </button>
+          </form>
+          <button class="navbar-search-btn">
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
+
+          <a style="margin-top:20px" href="{% url 'Authentication:index' %}" class="navbar-signin">
+            <span>Sign out</span>
+            <ion-icon name="log-in-outline"></ion-icon>
+          </a>
+
+        </div>
+
+      </div>
+    </header>
+
+    <main>
+      <section class="banner">
+        <div class="banner-card">
+
+          <img src="{{p.image.url }}" class="banner-img" alt="">
+
+          <div class="card-content">
+            <div class="card-info">       
+
+              <div class="quality">
+                <i class="fa fa-certificate" aria-hidden="true"></i>
+                <span>Certification : {{p.certification}}</span>
+              </div>
+
+              <div class="quality">4K</div>
+
+            </div>
+
+            <h2 class="card-title">{{p.moviename}}</h2>
+          </div>
+
+        </div>
+      </section>
+      <div style="margin: 0 auto;width:50%;margin-bottom:50px;" class="descrip">
+        <h3 style="color:aquamarine;margin-bottom:20px;">About Movie : </h3>
+        {{p.description}}
+      </div>
+      <section class="movies">
+        <div class="filter-bar">
+
+          <div class="filter-dropdowns">
+
+            <select name="genre" class="genre">
+              <option value="all genres">All genres</option>
+              <option value="action">Action</option>
+              <option value="adventure">Adventure</option>
+              <option value="animal">Animal</option>
+              <option value="animation">Animation</option>
+              <option value="biography">Biography</option>
+            </select>
+
+            <select name="year" class="year">
+              <option value="all years">All the years</option>
+              <option value="2022">2022</option>
+              <option value="2020-2021">2020-2021</option>
+              <option value="2010-2019">2010-2019</option>
+              <option value="2000-2009">2000-2009</option>
+              <option value="1980-1999">1980-1999</option>
+            </select>
+
+          </div>
+
+          <div class="filter-radios">
+
+            <input type="radio" name="grade" id="featured" checked>
+            <label for="featured">Featured</label>
+
+            <input type="radio" name="grade" id="popular">
+            <label for="popular">Popular</label>
+
+            <input type="radio" name="grade" id="newest">
+            <label for="newest">Newest</label>
+
+            <div class="checked-radio-bg"></div>
+
+          </div>
+
+        </div>       
+        
+        <a href="{% url 'Booking:showlist' p.id username %}"><button style="background-color:red" class="load-more">Book Tickets</button></a>
+      </section>
+     
+    </main>
+
+
+
+
+
+    
+    <footer>
+
+      <div class="footer-content">
+
+        <div class="footer-brand">
+          <img src="{% static 'logo.png' %}" alt="" class="footer-logo">
+          <p class="slogan">Movies & TV Shows, Online cinema,
+           Watch Online Movies Easily!</p>
+
+
+          <div class="social-link">
+
+            <a href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-tiktok"></ion-icon>
+            </a>
+            <a href="#">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+
+          </div>
+        </div>
+
+
+        <div class="footer-links">
+          <ul>
+
+            <h4 class="link-heading">The Golden Theatre</h4>
+
+            <li class="link-item"><a href="#">About us</a></li>
+            <li class="link-item"><a href="#">My profile</a></li>
+            <li class="link-item"><a href="#">Pricing plans</a></li>
+            <li class="link-item"><a href="#">Contacts</a></li>
+
+          </ul>
+
+          <ul>
+
+            <h4 class="link-heading">Browse</h4>
+
+            <li class="link-item"><a href="#">Live Tv</a></li>
+            <li class="link-item"><a href="#">Live News</a></li>
+            <li class="link-item"><a href="#">Live Sports</a></li>
+            <li class="link-item"><a href="#">Streaming Library</a></li>
+
+          </ul>
+
+          <ul>
+            <h4 class="link-heading">More</h4>
+            <li class="link-item"><a href="#">TV Shows</a></li>
+            <li class="link-item"><a href="#">Movies</a></li>
+            <li class="link-item"><a href="#">Kids</a></li>
+            <li class="link-item"><a href="#">Collections</a></li>
+
+          </ul>
+
+          <ul>
+
+            <h4 class="link-heading">Help</h4>
+
+            <li class="link-item"><a href="#">Account & Billing</a></li>
+            <li class="link-item"><a href="#">Plans & Pricing</a></li>
+            <li class="link-item"><a href="#">Supported devices</a></li>
+            <li class="link-item"><a href="#">Accessibility</a></li>
+
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-copyright">
+
+        <div class="copyright">
+          <p>&copy; copyright 2022 <span style="color:goldenrod">TheGoldenTheatre</span>
+        </div>
+
+        <div class="wrapper">
+          <a href="#">Privacy policy</a>
+          <a href="#">Terms and conditions</a>
+        </div>
+
+      </div>
+
+    </footer>
+
+  </div>
+
+  <script src="{% static 'static/main.js' %}"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+{%endfor%}
+</body>
+
+</html>
+ -->
